@@ -1,0 +1,12 @@
+<ul>
+  <p>{{name}}</p>
+  <li  *ngFor = "let currentKeg of kegs">
+    <h3 ><b>{{currentKeg.name}}: Current Keg Level {{currentKeg.kegVol}}</b></h3>
+    <p>Brand: {{currentKeg.brand}}<br/>
+    <span [class]="pintColor(currentKeg)">Price: ${{currentKeg.price}}</span><br/>
+    Alc Content: {{currentKeg.alcohol}}%</p>
+    <button (click) = "sellPint(currentKeg)">Sell A Pint</button>
+  </li>
+</ul>
+
+
