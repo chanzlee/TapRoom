@@ -5,14 +5,14 @@ import { FormsModule }  from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { KegComponent } from './keg/keg.component';
-import { HappyHourComponent } from './happy-hour/happy-hour.component';
+// import { HappyHourComponent } from './happy-hour/happy-hour.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     KegComponent,
-    HappyHourComponent
+    // HappyHourComponent
   ],
   imports: [
     BrowserModule,

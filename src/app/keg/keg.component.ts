@@ -19,9 +19,10 @@ export class KegComponent {
   
   kegs: Keg[] = [this.kegOne, this.kegTwo, this.kegThree, this.kegFour, this.kegFive, this.kegSix]
 
-  selectedKeg = null;
-  newKeg = null;
-  editingKeg = null;
+  selectedKeg: Keg = null;
+  newKeg: Keg = null;
+  editingKeg: Keg = null;
+  isHappyHour: boolean = false;
 
   sellPint(clickedKeg){
     clickedKeg.kegVol += clickedKeg.kegVol > 10 ? -1 : 0;
@@ -38,7 +39,6 @@ export class KegComponent {
   addNew(){
     let addedKeg = new Keg();
     this.newKeg = addedKeg;
-    
   }
 
   doneAdd(){
@@ -93,7 +93,53 @@ export class KegComponent {
     }
   }
 
+  isSale(currentKeg) {
+    this.selectedKeg = currentKeg;
+    // if (this.selectedKeg !== null)
+   if (this.selectedKeg.sale === true) {
+    return true;
+    } else {
+      return false;
+    }
+    // console.log(this.selectedKeg.sale);
+    // this.selectedKeg.price *= 0.5;
+  }
 
+  throwSale(currentKeg) {
+    this.selectedKeg = currentKeg;
+    if (this.selectedKeg.sale === true) {
+      this.selectedKeg.price /= 0.5;
+    } else {
+      this.selectedKeg.price *= 0.5;
+    }
+    this.selectedKeg.sale = !this.selectedKeg.sale;
+  }
+
+  happyHour() {
+    if (this.isHappyHour === false) {
+      this.isHappyHour = true;
+
+      this.kegs.forEach(function(currentKeg){
+        console.log(currentKeg);
+        if (currentKeg.sale === false) {
+          
+          currentKeg.sale = true;
+          currentKeg.price *= 0.5;
+        }
+      });
+    } else {
+      this.isHappyHour = false;
+
+      this.kegs.forEach(function(currentKeg){
+        console.log(currentKeg);
+        if (currentKeg.sale === true) {
+
+          currentKeg.sale = false;
+          currentKeg.price /= 0.5;
+        }
+      });
+    }
+  }
 }
 
 

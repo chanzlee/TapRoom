@@ -1,4 +1,4 @@
-span.running-out {
+.running-out {
     background-color: red;
 }
 
@@ -36,3 +36,6 @@ div {
     margin-bottom: 3%;
 }
 
+.sale {
+    color: red;
+}

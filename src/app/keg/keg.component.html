@@ -1,17 +1,24 @@
 <div class="container-fluid">
   <p>{{name}}</p>
+  <button class="btn btn-danger" (click)="happyHour()">Happy Hour</button>
+
+  <!-- <app-happy [is-happy]="selectedKeg.ishappy" (change)="onhappyChanged($event)"></app-happy> -->
+
   <div [class]="alcConColor(currentKeg)" *ngFor = "let currentKeg of kegs">
-    <h3><b>{{currentKeg.name}}</b></h3>
+    <span [class.sale]="isSale(currentKeg)">Sale!!!</span>
+    <h3><b>{{currentKeg.name | uppercase}}</b></h3>
     <p><u><span [class.running-out]="kegVolColor(currentKeg)">Current Keg Level: {{currentKeg.kegVol}}</span></u></p>
     <p>Brand: {{currentKeg.brand}}<br/>
-    <span [class]="pintColor(currentKeg)">Price: ${{currentKeg.price}}</span><br/>
-    Alc Content: {{currentKeg.alcohol}}%</p>
+    <span [class]="pintColor(currentKeg)">Price: {{currentKeg.price | currency:'USD':code:'1.1-1'}}</span><br/>
+    Alc Content: {{currentKeg.alcohol/100 | percent}}</p>
     <button class="btn btn-success" (click) = "sellPint(currentKeg)">Sell A Pint</button>
     <button class="btn btn-success" (click) = "sellGrowler(currentKeg)">Sell A Growler</button>
     <button class="btn btn-success" (click) = "sellLargeGrowler(currentKeg)">Sell A Large Growler</button><br/>
 
     <button class="btn btn-secondary" (click) = "editKeg(currentKeg)">Edit</button>
-    <button class="btn btn-secondary" (click) = "deleteKeg(currentKeg)">Delete</button>
+    <button class="btn btn-secondary" (click) = "deleteKeg(currentKeg)">Delete</button><br/>
+    <button class="btn btn-warning" (click) = "throwSale(currentKeg)">Sale</button>
+    
 
     <div *ngIf="editingKeg">
       <label for="name">Name: </label>
