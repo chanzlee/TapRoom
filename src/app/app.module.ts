@@ -5,6 +5,7 @@ import { FormsModule }  from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { KegComponent } from './keg/keg.component';
+import { SearchKegComponent } from './search-keg/search-keg.component';
 // import { HappyHourComponent } from './happy-hour/happy-hour.component';
 
 
@@ -12,6 +13,7 @@ import { KegComponent } from './keg/keg.component';
   declarations: [
     AppComponent,
     KegComponent,
+    SearchKegComponent,
     // HappyHourComponent
   ],
   imports: [

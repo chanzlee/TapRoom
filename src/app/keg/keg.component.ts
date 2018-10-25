@@ -23,6 +23,7 @@ export class KegComponent {
   newKeg: Keg = null;
   editingKeg: Keg = null;
   isHappyHour: boolean = false;
+  searchedKegs: Keg[] = null;
 
   sellPint(clickedKeg){
     clickedKeg.kegVol += clickedKeg.kegVol > 10 ? -1 : 0;
@@ -139,6 +140,11 @@ export class KegComponent {
         }
       });
     }
+  }
+
+  searchKeg (kegList: Keg[]) {
+    console.log(kegList);
+    this.searchedKegs = kegList;
   }
 }
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HappyHourComponent } from './happy-hour.component';
+import { SearchKegComponent } from './search-keg.component';
 
-describe('HappyHourComponent', () => {
-  let component: HappyHourComponent;
-  let fixture: ComponentFixture<HappyHourComponent>;
+describe('SearchKegComponent', () => {
+  let component: SearchKegComponent;
+  let fixture: ComponentFixture<SearchKegComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HappyHourComponent ]
+      declarations: [ SearchKegComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HappyHourComponent);
+    fixture = TestBed.createComponent(SearchKegComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

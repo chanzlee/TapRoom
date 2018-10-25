@@ -1,8 +1,13 @@
+<app-search-keg [childKegList]="kegs" (searchResult) = "searchKeg($event)"></app-search-keg>
+
+
 <div class="container-fluid">
   <p>{{name}}</p>
   <button class="btn btn-danger" (click)="happyHour()">Happy Hour</button>
 
-  <div [class]="alcConColor(currentKeg)" *ngFor = "let currentKeg of kegs">
+
+
+  <div [class]="alcConColor(currentKeg)" *ngFor = "let currentKeg of searchedKegs">
     <span [class.hidden]="!isSale(currentKeg)" [class.sale]="isSale(currentKeg)">Sale!!!</span>
     <h3><b>{{currentKeg.name | uppercase}}</b></h3>
     <p><u><span [class.running-out]="kegVolColor(currentKeg)">Current Keg Level: {{currentKeg.kegVol}}</span></u></p>
