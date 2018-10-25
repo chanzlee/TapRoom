@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Keg } from '../keg';
 
 @Component({
@@ -7,145 +7,21 @@ import { Keg } from '../keg';
   styleUrls: ['./keg.component.css']
 })
 export class KegComponent {
-  name: string;
+  @Input() isAdding: boolean;
+  @Output() create = new EventEmitter();
+  @Output() finish = new EventEmitter();
 
-  kegOne = new Keg("Kenneth Dream", "kennyG", 4, 3);
-  kegTwo = new Keg("Kenneth Hope", "kennyG", 7, 8);
-  kegThree = new Keg("Kenneth Korean Dream", "kennyG", 10, 15);
 
-  kegFour = new Keg("AJ Horse Milk", "Jaenbai co.", 1, 99);
-  kegFive= new Keg("Mel Sakura Bomb", "Gibson", 99, 1);
-  kegSix = new Keg("Julius Asiana Hijack", "BADE", 99, 6);
-  
-  kegs: Keg[] = [this.kegOne, this.kegTwo, this.kegThree, this.kegFour, this.kegFive, this.kegSix]
-
-  selectedKeg: Keg = null;
-  newKeg: Keg = null;
-  editingKeg: Keg = null;
-  isHappyHour: boolean = false;
-  searchedKegs: Keg[] = this.kegs;
-
-  sellPint(clickedKeg){
-    clickedKeg.kegVol += clickedKeg.kegVol > 10 ? -1 : 0;
+  addNew(name: string, brand: string, price: number,alcohol: number){
+    this.isAdding = false;
+    let addKeg = new Keg(name, brand, price, alcohol);
+    this.create.emit(addKeg);
   }
 
-  sellGrowler(clickedKeg){
-    clickedKeg.kegVol += clickedKeg.kegVol > 10 ? -2 : 0;
+  startAdd(){
+    this.isAdding = true;
+    console.log(this.isAdding);
+    this.finish.emit(this.isAdding);
   }
 
-  sellLargeGrowler(clickedKeg){
-    clickedKeg.kegVol += clickedKeg.kegVol > 10 ? -4 : 0;
-  }
-
-  addNew(){
-    let addedKeg = new Keg();
-    this.newKeg = addedKeg;
-  }
-
-  doneAdd(){
-    this.kegs.push(this.newKeg);
-    this.newKeg = null;
-  }
-
-  editKeg(currentKeg) {
-    this.editingKeg = currentKeg;
-  }
-
-  doneEdit() {
-    this.editingKeg = null;
-  }
-
-  deleteKeg(currentKeg) {
-    let currentIndex: number;
-    this.kegs.forEach(function(keg, index){
-      if (keg.name === currentKeg.name) {
-        currentIndex = index;
-      }
-    });
-    this.kegs.splice(currentIndex,1);
-  }
-
-  pintColor(currentKeg){
-    if(currentKeg.price >= 10){
-      return "price-high";
-    }else if(currentKeg.price >= 5){
-      return "price-medium";
-    }
-    else{
-      return "price-low";
-    }
-  }
-
-  kegVolColor(currentKeg) {
-    if (currentKeg.kegVol < 10) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  alcConColor(currentKeg) {
-    if (currentKeg.alcohol >= 10) {
-      return "alcohol-high"
-    } else if (currentKeg.alcohol >=5 ) {
-      return "alcohol-medium";
-    } else {
-      return "alcohol-low"
-    }
-  }
-
-  isSale(currentKeg) {
-    this.selectedKeg = currentKeg;
-    // if (this.selectedKeg !== null)
-   if (this.selectedKeg.sale === true) {
-    return true;
-    } else {
-      return false;
-    }
-    // console.log(this.selectedKeg.sale);
-    // this.selectedKeg.price *= 0.5;
-  }
-
-  throwSale(currentKeg) {
-    this.selectedKeg = currentKeg;
-    if (this.selectedKeg.sale === true) {
-      this.selectedKeg.price /= 0.5;
-    } else {
-      this.selectedKeg.price *= 0.5;
-    }
-    this.selectedKeg.sale = !this.selectedKeg.sale;
-  }
-
-  happyHour() {
-    if (this.isHappyHour === false) {
-      this.isHappyHour = true;
-
-      this.kegs.forEach(function(currentKeg){
-        console.log(currentKeg);
-        if (currentKeg.sale === false) {
-          
-          currentKeg.sale = true;
-          currentKeg.price *= 0.5;
-        }
-      });
-    } else {
-      this.isHappyHour = false;
-
-      this.kegs.forEach(function(currentKeg){
-        console.log(currentKeg);
-        if (currentKeg.sale === true) {
-
-          currentKeg.sale = false;
-          currentKeg.price /= 0.5;
-        }
-      });
-    }
-  }
-
-  searchKeg (kegList: Keg[]) {
-    console.log(kegList);
-    this.searchedKegs = kegList;
-  }
 }
-
-
