@@ -39,3 +39,7 @@ div {
 .sale {
     color: red;
 }
+
+.hidden{ 
+    display: none;
+}

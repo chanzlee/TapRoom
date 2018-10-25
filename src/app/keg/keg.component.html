@@ -2,10 +2,8 @@
   <p>{{name}}</p>
   <button class="btn btn-danger" (click)="happyHour()">Happy Hour</button>
 
-  <!-- <app-happy [is-happy]="selectedKeg.ishappy" (change)="onhappyChanged($event)"></app-happy> -->
-
   <div [class]="alcConColor(currentKeg)" *ngFor = "let currentKeg of kegs">
-    <span [class.sale]="isSale(currentKeg)">Sale!!!</span>
+    <span [class.hidden]="!isSale(currentKeg)" [class.sale]="isSale(currentKeg)">Sale!!!</span>
     <h3><b>{{currentKeg.name | uppercase}}</b></h3>
     <p><u><span [class.running-out]="kegVolColor(currentKeg)">Current Keg Level: {{currentKeg.kegVol}}</span></u></p>
     <p>Brand: {{currentKeg.brand}}<br/>
