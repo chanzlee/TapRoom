@@ -23,7 +23,7 @@ export class KegComponent {
   newKeg: Keg = null;
   editingKeg: Keg = null;
   isHappyHour: boolean = false;
-  searchedKegs: Keg[] = null;
+  searchedKegs: Keg[] = this.kegs;
 
   sellPint(clickedKeg){
     clickedKeg.kegVol += clickedKeg.kegVol > 10 ? -1 : 0;
